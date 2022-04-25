@@ -12,7 +12,7 @@ function LineDetail() {
             <div className="content">
               <div className="card">
                 <div className="card__header">
-                  <h5 className="px-4"> Create New Notification</h5>
+                  <h5 className="px-4">Camera Detection detail</h5>
                 </div>
                 <div className="row px-2">
                   <div className=" col-3">

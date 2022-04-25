@@ -32,7 +32,8 @@ const Dashboard = () => {
                           <thead>
                           <tr>
                             <th className="col-1"><abbr title="Title1">No.</abbr></th>
-                            <th className="col-10"><abbr title="Title2">Title</abbr></th>
+                            <th className="col-5"><abbr title="Title2">Title</abbr></th>
+                            <th className="col-5"><abbr title="Title2">Location</abbr></th>
                             <th className="col-1"><abbr title="Title3">Status</abbr></th>
                           </tr>
                           </thead>
@@ -40,16 +41,19 @@ const Dashboard = () => {
                           <tr>
                             <th>1</th>
                             <td>Row:1 Cell:1</td>
+                            <td>Location 1</td>
                             <td>Check</td>
                           </tr>
                           <tr>
                             <th>2</th>
                             <td>Row:2 Cell:1</td>
+                            <td>Location 2</td>
                             <td>Check</td>
                           </tr>
                           <tr>
                             <th>3</th>
                             <td>Row:3 Cell:1</td>
+                            <td>Location 3</td>
                             <td>Check</td>
                           </tr>
                           </tbody>
