@@ -17,17 +17,17 @@ const Dashboard = () => {
                   <a href="/line-inbox"> Line Notification </a>
                 </div>
                 <div className="btn col-12">
-                  <a href="/"> Create </a>
+                  <a href="/create"> Create </a>
                 </div>
               </div>
               <div className="col-9">
                 <div className="row">
                   <div className="card col-12">
                     <div className="card__header">
-                      <h3 className="title my-1">Emergency Header</h3>
+                      <h3 className="title my-2 px-2">Emergency Header</h3>
                     </div>
                     <div className="card__container">
-                      <div className="card__body pt-3">
+                      <div className="card__body pt-3 px-2">
                         <table className="table striped col-12">
                           <thead>
                           <tr>

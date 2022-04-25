@@ -20,7 +20,7 @@ const Navbar = () => {
               <a><h6 className="title">sum</h6></a>
             </div>
             <div className="nav-item">
-              <a><h6 className="title">Logout</h6></a>
+              <a href="/login"><h6 className="title">Logout</h6></a>
             </div>
           </div>
         </div>

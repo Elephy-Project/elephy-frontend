@@ -3,7 +3,7 @@ import React from "react";
 
 import Navbar from "./Navbar";
 
-function LineDetail() {
+function Create() {
   return (
       <div className="Create">
         <Navbar/>
@@ -29,36 +29,45 @@ function LineDetail() {
                   </div>
                   <div className="col-9">
                     <div className="row">
-                      <div className="card col-12">
+                      <div className="card col-6">
                         <div className="card__header px-2">
                           <h6>Location</h6>
                         </div>
-                        <div className="card__body my-2 px-2">
-                          <span>Apple park </span>
+                        <div className="card__body my-2 px-1">
+                          <div>
+                            <input type="search" className="input--sm" value="Apple park"/>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="card col-6">
+                        <div className="card__header px-2">
+                          <h6>Title</h6>
+                        </div>
+                        <div className="card__body my-2 px-1">
+                          <div>
+                            <input type="Text" className="input--sm" placeholder="Notification Title is here"/>
+                          </div>
                         </div>
                       </div>
                     </div>
                     <div className="row">
-                      <div className="card col-6">
+                      <div className="card col-12">
                         <div className="card__header px-2">
                           <h6>Description</h6>
                         </div>
                         <div className="card__body my-2 px-2">
-                          <span>Notification description will show here</span>
+                          <div>
+                            <input type="Text" className="input--sm" placeholder="Notification Description is here"/>
+                          </div>
                         </div>
                       </div>
-                      <div className="card col-6">
-                        <div className="card__header px-2">
-                          <h6>Image</h6>
-                        </div>
-                        <div className="card__body my-2 px-2">
-                          <span>Image will show here if have</span>
-                        </div>
+                    </div>
+                    <div className="row">
+                      <div className="btn col-5 mx-2">
+                        <a href="/">Submit</a>
                       </div>
-                      <div className="row">
-                        <div className="btn" >
-                          <a href="/">Back</a>
-                        </div>
+                      <div className="btn col-5 mx-2">
+                        <a href="/">Back</a>
                       </div>
                     </div>
                   </div>
@@ -72,4 +81,4 @@ function LineDetail() {
       ;
 }
 
-export default LineDetail;
+export default Create;
