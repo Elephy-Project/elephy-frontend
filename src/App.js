@@ -1,4 +1,4 @@
-import {Dashboard, Login, New, LineInbox, CamInbox, Create, LineDetail, CamDetail, Summary} from "./components";
+import {Dashboard, Login, LineInbox, CamInbox, Create, LineDetail, CamDetail, Summary} from "./components";
 import {Route, Routes, BrowserRouter} from "react-router-dom";
 import {Component} from "react";
 

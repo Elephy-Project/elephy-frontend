@@ -7,16 +7,16 @@ const Dashboard = () => {
   return (
       <div className="Login">
         <Navbar/>
-        <div className="hero fullscreen hero-img parallax-img">
+        <div className="hero fullscreen hero-img parallax-img login-bg">
           <div className="hero-body">
             <div className="content">
-              <div className="card col-12">
-                <div className="card__header">
-                  <h3 className="title px-3 u-text-center">Login</h3>
+              <div className="card u-shadow-md login-bg col-12">
+                <div className="card__header u-text-center">
+                  <h3 className="title px-3 text-white">Login</h3>
                 </div>
-                <div className="row level">
+                <div className="row pt-5 level">
                   <div className="col-3 level-item">
-                    <p className="m-0">Username:</p>
+                    <p className="m-0 text-white">Username:</p>
                   </div>
                   <div className="col-8 level-item">
                     <input type="name" value=""/>
@@ -24,14 +24,14 @@ const Dashboard = () => {
                 </div>
                 <div className="row level">
                   <div className="col-3 level-item">
-                    <p className="m-0">Pasword:</p>
+                    <p className="m-0 text-white">Pasword:</p>
                   </div>
                   <div className="col-8 level-item m-0">
                     <input type="password" value=""/>
                   </div>
                 </div>
-                <div className="row">
-                  <div className="btn px-4 mx-5 col-12">
+                <div className="u-center py-5">
+                  <div className="btn px-4 mx-5 w-40p u-round-full">
                     <a href="/">Login</a>
                   </div>
                 </div>

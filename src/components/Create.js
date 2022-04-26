@@ -5,13 +5,13 @@ import Navbar from "./Navbar";
 
 function Create() {
   return (
-      <div className="Create">
+      <div className="Create page-bg">
         <Navbar/>
         <div className="hero fullscreen u-text-center">
           <div className="hero-body">
             <div className="content">
-              <div className="card">
-                <div className="card__header">
+              <div className="card item-bg">
+                <div className="card__header py-2">
                   <h5 className="px-4"> Create New Notification</h5>
                 </div>
                 <div className="row px-2">
@@ -29,7 +29,7 @@ function Create() {
                   </div>
                   <div className="col-9">
                     <div className="row">
-                      <div className="card col-6">
+                      <div className="card col-5 mx-2">
                         <div className="card__header px-2">
                           <h6>Location</h6>
                         </div>
@@ -39,7 +39,7 @@ function Create() {
                           </div>
                         </div>
                       </div>
-                      <div className="card col-6">
+                      <div className="card col-6 mx-2">
                         <div className="card__header px-2">
                           <h6>Title</h6>
                         </div>
@@ -51,7 +51,7 @@ function Create() {
                       </div>
                     </div>
                     <div className="row">
-                      <div className="card col-12">
+                      <div className="card col-12 mx-2">
                         <div className="card__header px-2">
                           <h6>Description</h6>
                         </div>
@@ -63,10 +63,10 @@ function Create() {
                       </div>
                     </div>
                     <div className="row">
-                      <div className="btn col-5 mx-2">
+                      <div className="btn col-5 mx-5">
                         <a href="/">Submit</a>
                       </div>
-                      <div className="btn col-5 mx-2">
+                      <div className="btn col-5 mx-3">
                         <a href="/">Back</a>
                       </div>
                     </div>

@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 
 function LineDetail() {
   return (
-      <div className="Create">
+      <div className="CamDetail fullscreen page-bg">
         <Navbar/>
         <div className="hero fullscreen">
           <div className="hero-body">

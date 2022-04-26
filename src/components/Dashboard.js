@@ -4,25 +4,25 @@ import Navbar from "./Navbar";
 
 const Dashboard = () => {
   return (
-      <div className="Dashboard">
+      <div className="Dashboard page-bg ">
         <Navbar/>
-        <div className="hero fullscreen hero-img parallax-img">
+        <div className="hero fullscreen">
           <div className="hero-body">
             <div className="row">
               <div className="col-3 u-items-center py-10">
-                <div className="btn col-12">
+                <div className="btn col-12 ">
                   <a href="/cam-inbox"> Camera Notification </a>
                 </div>
-                <div className="btn col-12">
+                <div className="btn col-12 ">
                   <a href="/line-inbox"> Line Notification </a>
                 </div>
-                <div className="btn col-12">
+                <div className="btn col-12 ">
                   <a href="/create"> Create </a>
                 </div>
               </div>
               <div className="col-9">
                 <div className="row">
-                  <div className="card col-12">
+                  <div className="card col-12 ">
                     <div className="card__header">
                       <h3 className="title my-2 px-2">Emergency Header</h3>
                     </div>
