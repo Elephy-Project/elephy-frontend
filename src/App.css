@@ -2,6 +2,26 @@
   text-align: center;
 }
 
+.nav-bg {
+  background: #A5A58D;
+}
+
+.page-bg {
+  background: rgba(221, 190, 169, 0.8);
+}
+
+.item-bg {
+  background: rgba(255, 232, 214, 1);
+}
+
+.login-bg {
+  background: rgba(53, 67, 94, 1);
+}
+
+.login-item {
+  background: rgba(53, 67, 94, 0.5);
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -14,7 +34,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #A5A58D;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
