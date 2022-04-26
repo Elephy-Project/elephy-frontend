@@ -7,7 +7,7 @@ function Create() {
   return (
       <div className="Create">
         <Navbar/>
-        <div className="hero fullscreen">
+        <div className="hero fullscreen u-text-center">
           <div className="hero-body">
             <div className="content">
               <div className="card">

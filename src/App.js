@@ -1,4 +1,4 @@
-import {Dashboard, Login, New, LineInbox, CamInbox, Create, LineDetail, CamDetail} from "./components";
+import {Dashboard, Login, New, LineInbox, CamInbox, Create, LineDetail, CamDetail, Summary} from "./components";
 import {Route, Routes, BrowserRouter} from "react-router-dom";
 import {Component} from "react";
 
@@ -18,6 +18,7 @@ class App extends Component {
             <Route path='/create' element={<Create />} />
             <Route path='/line-detail' element={<LineDetail />} />
             <Route path='/cam-detail' element={<CamDetail />} />
+            <Route path='/summary' element={<Summary />} />
           </Routes>
         </BrowserRouter>
     )
