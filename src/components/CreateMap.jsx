@@ -29,7 +29,7 @@ const CreateMaps = ({target}) => {
 
   const {isLoaded} = useJsApiLoader({
     // googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    googleMapsApiKey: 'AIzaSyAQIwA0ql01D32VSBhVjXJLm4YpeSt25R4',
+    googleMapsApiKey: 'API_KEY',
     libraries: ['places'],
   })
 

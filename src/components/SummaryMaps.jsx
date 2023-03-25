@@ -26,7 +26,7 @@ const DetailMaps = (props) => {
   const [sumPosition, setSumPosition] = useState([]);
   const { isLoaded } = useJsApiLoader({
     // googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
-    googleMapsApiKey: 'AIzaSyAQIwA0ql01D32VSBhVjXJLm4YpeSt25R4',
+    googleMapsApiKey: 'API_KEY',
     libraries: ['places'],
   })
 
