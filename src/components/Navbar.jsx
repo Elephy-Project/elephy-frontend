@@ -1,6 +1,7 @@
 import 'cirrus-ui';
 import React from "react";
 import "../App.css"
+import {Link} from "react-router-dom";
 
 const Navbar = () => {
 
@@ -8,7 +9,7 @@ const Navbar = () => {
       <div className="header header-fixed unselectable header-animated nav-bg" style={{zIndex: 30}}>
         <div className="header-brand">
           <div className="nav-item no-hover">
-            <a href="/"><h6 className="title">Elephy</h6></a>
+            <Link to="/"><h6>Elephy</h6></Link>
           </div>
           <div className="nav-item nav-btn" id="header-btn">
             <span />
@@ -19,11 +20,11 @@ const Navbar = () => {
         <div className="header-nav">
           <div className="nav-right">
             <div className="nav-item">
-              <a href="/summary"><h6 className="title">sum</h6></a>
+              <Link to="/summary"><h6 className="title">History</h6></Link>
             </div>
-            <div className="nav-item">
-              <a href="/login"><h6 className="title">Logout</h6></a>
-            </div>
+            {/*<div className="nav-item">*/}
+            {/*  <Link to="/"><h6 className="title">Logout</h6></a>*/}
+            {/*</div>*/}
           </div>
         </div>
       </div>

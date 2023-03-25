@@ -1,6 +1,9 @@
-import {Dashboard, Login, LineInbox, CamInbox, Create, LineDetail, CamDetail, Summary, Maps} from "./components";
-import {Route, Routes, BrowserRouter} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import {Component} from "react";
+import dashboardPage from "./pages/dashboard";
+import summaryPage from "./pages/summaryPage";
+import createPage from "./pages/createPage";
+import detailPage from "./pages/detailPage";
 
 class App extends Component {
 
@@ -9,19 +12,15 @@ class App extends Component {
 
   render() {
     return (
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<Dashboard />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/cam-inbox' element={<CamInbox />} />
-            <Route path='/line-inbox' element={<LineInbox />} />
-            <Route path='/create' element={<Create />} />
-            <Route path='/line-detail' element={<LineDetail />} />
-            <Route path='/cam-detail' element={<CamDetail />} />
-            <Route path='/summary' element={<Summary />} />
-            <Route path='/maps' element={<Maps />} />
-          </Routes>
-        </BrowserRouter>
+        <div>
+          <Switch>
+            <Route exact path='/' component={dashboardPage}/>
+            <Route exact path='/create' component={createPage}/>
+            <Route exact path='/detail' component={detailPage}/>
+            <Route exact path='/summary' component={summaryPage}/>
+            {/*<Route exact path='/maps' component={Maps}/>*/}
+          </Switch>
+        </div>
     )
   };
 }
