@@ -1,7 +1,6 @@
 import 'cirrus-ui';
 import React, {useEffect, useState} from "react";
 import Navbar from "./Navbar";
-import {MOCK_DATA} from "./data";
 import {Button, Table} from "antd";
 import {Link, useHistory} from "react-router-dom";
 import axios from "axios";
@@ -21,7 +20,8 @@ const Dashboard = () => {
 
   const fetchData = async () => {
     try {
-      const data = await axios.get(`https://elephy-backend.vercel.app/elephant-records`).then(response => {
+      console.log(process.env.REACT_APP_BASE_PATH)
+      const data = await axios.get(`${process.env.REACT_APP_BASE_PATH}/elephant-records`).then(response => {
         return response.data
       })
       let id = 0

@@ -14,8 +14,6 @@ import {
   useJsApiLoader,
   GoogleMap,
   Marker,
-  Autocomplete,
-  DirectionsRenderer,
 } from '@react-google-maps/api'
 import {useEffect, useRef, useState} from 'react'
 

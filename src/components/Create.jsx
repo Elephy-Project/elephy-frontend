@@ -31,7 +31,7 @@ const Create = () => {
 
   const handleSubmit = async () => {
     try {
-      const res = await axios.post(`https://elephy-backend.vercel.app/record`, {
+      const res = await axios.post(`${process.env.REACT_APP_BASE_PATH}/record`, {
         informant: informant,
         location_lat: Number(lat),
         location_long: Number(lon),

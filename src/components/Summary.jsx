@@ -64,7 +64,7 @@ const Summary = () => {
   }
   const fetchData = async () => {
     try {
-      const data = await axios.get(`https://elephy-backend.vercel.app/elephant-records`).then(response => {
+      const data = await axios.get(`${process.env.REACT_APP_BASE_PATH}/elephant-records`).then(response => {
         return response.data
       })
       let id = 0

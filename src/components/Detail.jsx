@@ -18,16 +18,13 @@ const Detail = () => {
   const history = useHistory();
 
   const fetchRecords = async () => {
-    console.log('key', location.param)
     setIsLoading(true)
     try {
-      const data = await axios.get(`https://elephy-backend.vercel.app/elephant-records`).then(response => {
-        console.log('response', response.data)
+      const data = await axios.get(`${process.env.REACT_APP_BASE_PATH}/elephant-records`).then(response => {
         return response.data
       })
 
       const temp = data.filter((t) => t.id === location.param.toString())[0]
-      console.log('data', temp)
 
       const date = new Date(temp.datetime);
       const options = {
@@ -48,7 +45,6 @@ const Detail = () => {
         point: {lat: temp.location_lat, lng: temp.location_long}
       }]
       setNotification(tempRecord[0])
-      console.log('tempRecord', tempRecord)
     } catch (e) {
       console.log(e)
     }
@@ -59,7 +55,6 @@ const Detail = () => {
     fetchRecords().then(r => '')
   }, [location.param])
 
-  console.log('API: ', process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
   return (
       // notification.length > 0 ? (
       // isLoading ? (

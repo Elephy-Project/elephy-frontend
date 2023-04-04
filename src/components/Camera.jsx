@@ -59,7 +59,7 @@ const Camera = () => {
   }
   const fetchData = async () => {
     try {
-      const data = await axios.get(`https://elephy-backend.vercel.app/info-camera`).then(response => {
+      const data = await axios.get(`${process.env.REACT_APP_BASE_PATH}/info-camera`).then(response => {
         return response.data
       })
       let id = 0
@@ -112,7 +112,7 @@ const Camera = () => {
 
   const haandleSubmit = async () => {
     try {
-      const res = await axios.post(`https://elephy-backend.vercel.app/info-camera`, {
+      const res = await axios.post(`${process.env.REACT_APP_BASE_PATH}/info-camera`, {
         camera_id: camId,
         location_lat: Number(lat),
         location_long: Number(lon),
