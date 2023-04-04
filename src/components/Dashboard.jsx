@@ -24,9 +24,6 @@ const Dashboard = () => {
       const data = await axios.get(`https://elephy-backend.vercel.app/elephant-records`).then(response => {
         return response.data
       })
-
-
-      console.log('data', data)
       let id = 0
       const tempRecords = []
       data.map((record) => {
@@ -52,8 +49,7 @@ const Dashboard = () => {
 
 
       setRecords(tempRecords)
-    }
-  catch (e) {
+    } catch (e) {
       console.log(e)
     }
     setLoading(false)
@@ -74,10 +70,18 @@ const Dashboard = () => {
                     <div>
                       <h3 className="title">Inbox</h3>
                     </div>
-                    <div className="">
-                      <Link to="/create">
-                        <Button className="h-12 w-32"><p>Create</p></Button>
-                      </Link>
+                    <div className='flex'>
+                      <div className="">
+                        <Link to="/camera">
+                          <Button className="h-12 w-32"><p>Camera</p></Button>
+                        </Link>
+                      </div>
+                      <div className="">
+                        <Link to="/create">
+                          <Button className="h-12 w-32"><p>Create</p></Button>
+                        </Link>
+                      </div>
+
                     </div>
                   </div>
                   <Table
@@ -89,10 +93,8 @@ const Dashboard = () => {
                           onClick: (event) => {
                             history.push({
                               pathname: '/detail',
-                              param: `${record.id}`,
+                              param: `${record.key}`,
                             })
-                            console.log(record.key)
-                            // <Link to={`/detail/${record.key}`}/>
                           },
                         }
                       }

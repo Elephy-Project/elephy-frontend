@@ -1,27 +1,24 @@
 import 'cirrus-ui';
 import React, {useEffect, useState} from "react";
-
 import Navbar from "./Navbar";
-import DetailMaps from "./DetailMaps";
 import {Button, Select, Table} from "antd";
-import {LOCATION, MOCK_DATA} from "./data";
 import {Link, useHistory} from "react-router-dom";
 import SummaryMaps from "./SummaryMaps";
-import {useLocation} from "react-router";
+import axios from "axios";
 
-const MONTH = [{value: "01", label: "January"}, {value: "02", label: "February"}, {
-  value: "03", label: "March"
-}, {alue: "04", label: "April"}, {value: "05", label: "May"}, {
-  value: "06", label: "June"
+const MONTH = [{value: 0, label: "January"}, {value: 1, label: "February"}, {
+  value: 2, label: "March"
+}, {alue: 3, label: "April"}, {value: 4, label: "May"}, {
+  value: 5, label: "June"
 }, {
-  value: "07", label: "July"
-}, {value: "08", label: "August"}, {value: "09", label: "Septembe"}, {
-  value: "10", label: "October"
+  value: 6, label: "July"
+}, {value: 7, label: "August"}, {value: 8, label: "Septembe"}, {
+  value: 9, label: "October"
 }, {
-  value: "11", label: "November"
-}, {value: "12", label: "December"}]
+  value: 10, label: "November"
+}, {value: 11, label: "December"}]
 
-const YEAR = [{value: "2022", label: "2022"}, {value: "2023", label: "2023"},]
+const YEAR = [{value: 2022, label: "2022"}, {value: 2023, label: "2023"},]
 
 const SUM_COL = [{
   title: 'ID', dataIndex: 'id', key: 'id'
@@ -30,37 +27,85 @@ const SUM_COL = [{
 }, {
   title: 'ผู้แจ้งเตือน', dataIndex: 'informant', key: 'informant',
 }, {
-  title: 'วันเวลา', dataIndex: 'dateTime', key: 'dateTime',
+  title: 'วันเวลา', dataIndex: 'dateTimeLabel', key: 'dateTime',
 },]
 
 const Summary = () => {
-  const [dataset, setDataSet] = useState([]);
-  const [positionSet, setPosition] = useState([]);
-  const [month, setMonth] = useState('01');
-  const [year, setYear] = useState('2023');
+  const [dataset, setDataSet] = useState([]); // change to record
+  const [positionSet, setPositionSet] = useState([]);
+  const [month, setMonth] = useState(0);
+  const [year, setYear] = useState(2023);
   const history = useHistory();
+  const [records, setRecords] = useState([]);
 
 
+  // useEffect(() => {
+  //   declairPosition().then(r => '');
+  // }, [dataset])
+
   useEffect(() => {
-    declairPosition().then(r => '');
-  }, [dataset])
+    fetchData().then(r => '');
+  }, [])
+
   useEffect(() => {
-    declairDataSet().then(r => '');
-  }, [month, year])
-  const declairDataSet = async () => {
-    const tempData = MOCK_DATA.filter((temp) => temp.dateTime.includes(`-${month}-`) && temp.dateTime.includes(`-${year}`))
-    await setDataSet(tempData)
+    filterRecords().then(r => '')
+  }, [dataset, month, year])
+
+  const filterRecords = async () => {
+    // && record.dateTime.getFullYear() === year
+    const tempRecords = dataset.filter((record) => record.dateTime.getMonth() === month && record.dateTime.getFullYear() === year)
+    setRecords(tempRecords)
+    const tempLecoation = []
+
+    tempRecords.map((record) =>
+        tempLecoation.push(record.point)
+    )
+    setPositionSet(tempLecoation)
+  }
+  const fetchData = async () => {
+    try {
+      const data = await axios.get(`https://elephy-backend.vercel.app/elephant-records`).then(response => {
+        return response.data
+      })
+      let id = 0
+      const tempRecords = []
+      data.map((record) => {
+        id += 1
+        const date = new Date(record.datetime);
+
+        const options = {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          timeZone: 'Asia/Bangkok'
+        };
+        const formattedDate = date.toLocaleString('en-GB', options);
+        tempRecords.push({
+          key: record.id,
+          id: id,
+          informant: record.informant,
+          location: `${record.location_lat} / ${record.location_long}`,
+          dateTimeLabel: `${formattedDate}`,
+          dateTime: date,
+          point: {lat: record.location_lat, lng: record.location_long}
+        })
+      })
+      setDataSet(tempRecords)
+    }
+    catch (e) {
+      console.log(e)
+    }
+    // setLoading(false)
   }
 
-  const declairPosition = async () => {
-    const tempPositionSet = []
-    if (dataset.length > 0) {
-      dataset.map((data) => {
-        const temp = LOCATION.filter((pos) => pos.value === data.location)
-        tempPositionSet.push(temp[0].point)
-      })
-    }
-    setPosition(tempPositionSet)
+  const handleMonthOnChange = (value, label) => {
+    setMonth(value)
+  }
+
+  const handleYearOnChange = (value, label) => {
+    setYear(value)
   }
 
   return (<div className="Summary page-bg">
@@ -85,10 +130,10 @@ const Summary = () => {
                 <Select
                     className="mr-1"
                     style={{width: 200}}
-                    defaultValue="01"
+                    defaultValue='January'
                     bordered
                     options={MONTH}
-                    onChange={setMonth}
+                    onChange={handleMonthOnChange}
                 />
                 <Select
                     className="ml-1"
@@ -96,32 +141,26 @@ const Summary = () => {
                     defaultValue="2023"
                     bordered
                     options={YEAR}
-                    onChange={setYear}
+                    onChange={handleYearOnChange}
                 />
               </div>
               {dataset &&
                   <Table
                       className="justify-end"
                       columns={SUM_COL}
-                      dataSource={dataset}
+                      dataSource={records}
                       onRow={(record, rowIndex) => {
                         return {
                           onClick: (event) => {
                             history.push({
                               pathname: '/detail', param: `${record.key}`,
                             })
-                            // <Link to={`/detail/${record.key}`}/>
                           },
                         }
                       }}
                   />
               }
             </div>
-            {/*<div className="row">*/}
-            {/*  <Link to="/">*/}
-            {/*    <Button className="h-12"><p>BACK</p></Button>*/}
-            {/*  </Link>*/}
-            {/*</div>*/}
           </div>
         </div>
       </div>

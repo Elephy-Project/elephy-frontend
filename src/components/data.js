@@ -32,12 +32,12 @@ const MOCK_DATA = [
 const LOCATION = [
   {
     value: 'A',
-    label: 'Point A',
+    label: 'Camera A',
     point: {lat: 13.736717, lng: 100.523186}
   },
   {
     value: 'B',
-    label: 'Point B',
+    label: 'Camera B',
     point: {lat: 13.848045353074403, lng: 100.5696632024197}
   }
 ]

@@ -21,12 +21,11 @@ import {useEffect, useRef, useState} from 'react'
 
 const center = {lat: 13.736717, lng: 100.523186}
 
-const DetailMaps = (props) => {
+const SummaryMap = (props) => {
   const positionSet = props.positionSet
   const [sumPosition, setSumPosition] = useState([]);
   const { isLoaded } = useJsApiLoader({
-    // googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
-    googleMapsApiKey: 'API_KEY',
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries: ['places'],
   })
 
@@ -34,7 +33,6 @@ const DetailMaps = (props) => {
     setSumPosition(positionSet)
   },[positionSet])
 
-  console.log('sumPosition', sumPosition)
   const [map, setMap] = useState(/** @type google.maps.Map */ (null))
   const [directionsResponse, setDirectionsResponse] = useState(null)
   const [distance, setDistance] = useState('')
@@ -116,4 +114,4 @@ const DetailMaps = (props) => {
   )
 }
 
-export default DetailMaps
+export default SummaryMap

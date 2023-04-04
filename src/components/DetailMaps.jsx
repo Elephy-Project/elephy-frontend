@@ -25,19 +25,15 @@ const DetailMaps = (props) => {
   const position = props.position
   const [notiPosition, setNotiPosition] = useState();
   const { isLoaded } = useJsApiLoader({
-    // googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
-    googleMapsApiKey: 'API_KEY',
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries: ['places'],
   })
 
   useEffect(() => {
-    setNotiPosition(position.point)
+    setNotiPosition(position)
   },[position])
 
   const [map, setMap] = useState(/** @type google.maps.Map */ (null))
-  const [directionsResponse, setDirectionsResponse] = useState(null)
-  const [distance, setDistance] = useState('')
-  const [duration, setDuration] = useState('')
 
   /** @type React.MutableRefObject<HTMLInputElement> */
   const originRef = useRef()
