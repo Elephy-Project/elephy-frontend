@@ -56,6 +56,7 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
+    console.log('call')
     fetchData().then(r => null)
   }, [])
 
