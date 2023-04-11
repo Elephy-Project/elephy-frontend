@@ -107,7 +107,7 @@ const SummaryMap = (props) => {
             </GoogleMap>
           </Box>
           {/*<Box position='absolute' right={0} top={50} h='90%' w='20%'>*/}
-          {/*  <Summary/>*/}
+          {/*  <History/>*/}
           {/*</Box>*/}
         </Flex>
       </>

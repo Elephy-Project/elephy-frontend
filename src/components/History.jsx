@@ -3,20 +3,22 @@ import React, {useEffect, useState} from "react";
 import Navbar from "./Navbar";
 import {Button, Select, Table} from "antd";
 import {Link, useHistory} from "react-router-dom";
-import SummaryMaps from "./SummaryMaps";
+import SummaryMaps from "./HistoryMaps";
 import axios from "axios";
 
-const MONTH = [{value: 0, label: "January"}, {value: 1, label: "February"}, {
-  value: 2, label: "March"
-}, {alue: 3, label: "April"}, {value: 4, label: "May"}, {
-  value: 5, label: "June"
-}, {
-  value: 6, label: "July"
-}, {value: 7, label: "August"}, {value: 8, label: "Septembe"}, {
-  value: 9, label: "October"
-}, {
-  value: 10, label: "November"
-}, {value: 11, label: "December"}]
+const MONTH = [
+  {value: 0, label: "January"},
+  {value: 1, label: "February"},
+  {value: 2, label: "March"},
+  {value: 3, label: "April"}, {value: 4, label: "May"}, {
+    value: 5, label: "June"
+  }, {
+    value: 6, label: "July"
+  }, {value: 7, label: "August"}, {value: 8, label: "September"}, {
+    value: 9, label: "October"
+  }, {
+    value: 10, label: "November"
+  }, {value: 11, label: "December"}]
 
 const YEAR = [{value: 2022, label: "2022"}, {value: 2023, label: "2023"},]
 
@@ -30,7 +32,7 @@ const SUM_COL = [{
   title: 'วันเวลา', dataIndex: 'dateTimeLabel', key: 'dateTime',
 },]
 
-const Summary = () => {
+const History = () => {
   const [dataset, setDataSet] = useState([]); // change to record
   const [positionSet, setPositionSet] = useState([]);
   const [month, setMonth] = useState(0);
@@ -93,14 +95,14 @@ const Summary = () => {
         })
       })
       setDataSet(tempRecords)
-    }
-    catch (e) {
+    } catch (e) {
       console.log(e)
     }
     // setLoading(false)
   }
 
   const handleMonthOnChange = (value, label) => {
+    console.log(value)
     setMonth(value)
   }
 
@@ -168,4 +170,4 @@ const Summary = () => {
   </div>);
 }
 
-export default Summary;
+export default History;

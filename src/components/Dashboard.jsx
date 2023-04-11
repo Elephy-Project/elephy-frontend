@@ -2,7 +2,7 @@ import 'cirrus-ui';
 import React, {useEffect, useState} from "react";
 import Navbar from "./Navbar";
 import {Button, Table} from "antd";
-import {Link, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import axios from "axios";
 
 
@@ -61,52 +61,34 @@ const Dashboard = () => {
   }, [])
 
   return (// <h1> hello world</h1>
-      (records.length > 0) ?
-          (<div className="Dashboard page-bg ">
+      (records.length > 0) ? (
+          <div className="page-bg h-screen">
             <Navbar/>
-            <div className="hero fullscreen u-text-center">
-              <div className="hero-body">
-                <div className="content mt-4">
-                  <div className="flex mt-6 mx-8 justify-between">
-                    <div>
-                      <h3 className="title">Inbox</h3>
-                    </div>
-                    <div className='flex'>
-                      <div className="">
-                        <Link to="/camera">
-                          <Button className="h-12 w-32"><p>Camera</p></Button>
-                        </Link>
-                      </div>
-                      <div className="">
-                        <Link to="/create">
-                          <Button className="h-12 w-32"><p>Create</p></Button>
-                        </Link>
-                      </div>
-
-                    </div>
-                  </div>
-                  <Table
-                      className="mx-4"
-                      columns={INBOX_COL}
-                      dataSource={records}
-                      onRow={(record, rowIndex) => {
-                        return {
-                          onClick: (event) => {
-                            history.push({
-                              pathname: '/detail',
-                              param: `${record.key}`,
-                            })
-                          },
-                        }
-                      }
-                      }
-                  />
-                </div>
+            <div className="mt-6 flex justify-between">
+              <h3 className="mx-8 pt-8">Inbox</h3>
+              <div className="pt-8 mx-8">
+                <Button className="h-12 w-32 mr-2" onClick={() => history.push('/camera')}><p>Camera</p></Button>
+                <Button className="h-12 w-32 ml-2" onClick={() => history.push('/create')}><p>Create</p></Button>
               </div>
             </div>
-          </div>) : null
-  )
-      ;
+            <div>
+              <Table
+                  className="mx-4"
+                  columns={INBOX_COL}
+                  dataSource={records}
+                  onRow={(record, rowIndex) => {
+                    return {
+                      onClick: (event) => {
+                        history.push({
+                          pathname: '/detail', param: `${record.key}`,
+                        })
+                      },
+                    }
+                  }}
+              />
+            </div>
+          </div>
+      ) : null);
 };
 
 export default Dashboard;

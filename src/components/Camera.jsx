@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import Navbar from "./Navbar";
 import {Button, Input, Select, Table} from "antd";
 import {Link, useHistory} from "react-router-dom";
-import SummaryMaps from "./SummaryMaps";
+import SummaryMaps from "./HistoryMaps";
 import axios from "axios";
 
 const MONTH = [{value: 0, label: "January"}, {value: 1, label: "February"}, {

@@ -63,10 +63,10 @@ const Detail = () => {
             <div className="hero fullscreen">
               <div className="hero-body">
                 <div className="content mt-4">
-                  <h5 className="px-4">Detail</h5>
+                  <h4 className="px-4 text-center">Detail</h4>
                   <div className="row px-2">
                     <div className=" col-8">
-                      <div className="card h-70p">
+                      <div className="card h-70">
                         {<DetailMaps position={notification.point}/>}
                       </div>
                     </div>

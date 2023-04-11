@@ -1,31 +1,15 @@
-import 'cirrus-ui';
+// import 'cirrus-ui';
 import React from "react";
 import "../App.css"
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 const Navbar = () => {
-
+  const history = useHistory();
   return (
-      <div className="header header-fixed unselectable header-animated nav-bg" style={{zIndex: 30}}>
-        <div className="header-brand">
-          <div className="nav-item no-hover">
-            <Link to="/"><h6>Elephy</h6></Link>
-          </div>
-          <div className="nav-item nav-btn" id="header-btn">
-            <span />
-            <span />
-            <span />
-          </div>
-        </div>
-        <div className="header-nav">
-          <div className="nav-right">
-            <div className="nav-item">
-              <Link to="/summary"><h6 className="title">History</h6></Link>
-            </div>
-            {/*<div className="nav-item">*/}
-            {/*  <Link to="/"><h6 className="title">Logout</h6></a>*/}
-            {/*</div>*/}
-          </div>
+      <div className="nav-bg absolute top-0 w-full h-14">
+        <div className="justify-between flex py-3 mx-4 h-16">
+          <h6 className="text-white cursor-pointer" onClick={() => history.push('/')}>Elephy</h6>
+          <h6 className="text-white cursor-pointer" onClick={() => history.push('/history')}>History</h6>
         </div>
       </div>
   );

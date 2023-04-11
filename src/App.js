@@ -1,10 +1,11 @@
 import {Route, Switch} from "react-router-dom";
 import {Component} from "react";
 import dashboardPage from "./pages/dashboard";
-import summaryPage from "./pages/summaryPage";
+import historyPage from "./pages/historyPage";
 import createPage from "./pages/createPage";
 import detailPage from "./pages/detailPage";
 import cameraPage from "./pages/cameraPage";
+import loginPage from "./pages/loginPage";
 
 class App extends Component {
 
@@ -19,7 +20,8 @@ class App extends Component {
             <Route exact path='/create' component={createPage}/>
             <Route exact path='/camera' component={cameraPage}/>
             <Route exact path='/detail' component={detailPage}/>
-            <Route exact path='/summary' component={summaryPage}/>
+            <Route exact path='/history' component={historyPage}/>
+            <Route exact path='/login' component={loginPage}/>
             {/*<Route exact path='/maps' component={Maps}/>*/}
           </Switch>
         </div>
