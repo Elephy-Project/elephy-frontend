@@ -79,16 +79,16 @@ const SummaryMap = (props) => {
             position='relative'
             flexDirection='column'
             alignItems='right'
-            h='100vh'
-            w='100vw'
+            h='85vh'
+            w='52vw'
         >
-          <Box position='absolute' left={0} top={0} h='75%' w='100%'>
+          <Box position='absolute' left={0} top={0} h='100%' w='100%'>
             {/* Google Map Box */}
             <GoogleMap
                 // center={center}
                 center={center}
-                zoom={11}
-                mapContainerStyle={{ width: '50%', height: '100%' }}
+                zoom={10.8}
+                mapContainerStyle={{ width: '100%', height: '100%' }}
                 options={{
                   zoomControl: false,
                   streetViewControl: false,

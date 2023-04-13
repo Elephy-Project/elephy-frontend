@@ -22,15 +22,15 @@ const MONTH = [
 
 const YEAR = [{value: 2022, label: "2022"}, {value: 2023, label: "2023"},]
 
-const SUM_COL = [{
-  title: 'ID', dataIndex: 'id', key: 'id'
-}, {
-  title: 'ชื่อจุด', dataIndex: 'location', key: 'location'
-}, {
-  title: 'ผู้แจ้งเตือน', dataIndex: 'informant', key: 'informant',
-}, {
-  title: 'วันเวลา', dataIndex: 'dateTimeLabel', key: 'dateTime',
-},]
+const SUM_COL = [
+  {
+    title: 'ผู้แจ้งเตือน', dataIndex: 'informant', key: 'informant',
+  },
+  {
+    title: 'Location', dataIndex: 'location', key: 'location'
+  }, {
+    title: 'วันเวลา', dataIndex: 'dateTimeLabel', key: 'dateTime',
+  },]
 
 const History = () => {
   const [dataset, setDataSet] = useState([]); // change to record
@@ -110,64 +110,112 @@ const History = () => {
     setYear(value)
   }
 
-  return (<div className="Summary page-bg">
-    <Navbar/>
-    <div className="hero fullscreen">
-      <div className="hero-body">
-        <div className="content mt-4">
-          <div className="flex justify-between px-4">
-            <h5 className="">History</h5>
-            <Link to="/">
-              <Button className="h-12 w-32"><p>BACK</p></Button>
-            </Link>
+  return (
+      <div className="page-bg h-hull w-full">
+        <Navbar name={'HISTORY'}/>
+        <div className="row px-4 pt-12">
+          <div className=" col-7">
+            <div className="ml-1">
+              {positionSet && <SummaryMaps positionSet={positionSet}/>}
+            </div>
           </div>
-          <div className="row px-2">
-            <div className=" col-7">
-              <div className=" ">
-                {positionSet && <SummaryMaps positionSet={positionSet}/>}
-              </div>
+          <div className="col-5 ">
+            <div className="flex justify-end mb-2">
+              <Select
+                  className="mr-1"
+                  style={{width: 200}}
+                  defaultValue='January'
+                  bordered
+                  options={MONTH}
+                  onChange={handleMonthOnChange}
+              />
+              <Select
+                  className="ml-1"
+                  style={{width: 200}}
+                  defaultValue="2023"
+                  bordered
+                  options={YEAR}
+                  onChange={handleYearOnChange}
+              />
             </div>
-            <div className="col-5">
-              <div className="flex justify-end mb-2">
-                <Select
-                    className="mr-1"
-                    style={{width: 200}}
-                    defaultValue='January'
-                    bordered
-                    options={MONTH}
-                    onChange={handleMonthOnChange}
+            {dataset &&
+                <Table
+                    className="justify-end"
+                    columns={SUM_COL}
+                    dataSource={records}
+                    onRow={(record, rowIndex) => {
+                      return {
+                        onClick: (event) => {
+                          history.push({
+                            pathname: '/detail', param: `${record.key}`,
+                          })
+                        },
+                      }
+                    }}
                 />
-                <Select
-                    className="ml-1"
-                    style={{width: 200}}
-                    defaultValue="2023"
-                    bordered
-                    options={YEAR}
-                    onChange={handleYearOnChange}
-                />
-              </div>
-              {dataset &&
-                  <Table
-                      className="justify-end"
-                      columns={SUM_COL}
-                      dataSource={records}
-                      onRow={(record, rowIndex) => {
-                        return {
-                          onClick: (event) => {
-                            history.push({
-                              pathname: '/detail', param: `${record.key}`,
-                            })
-                          },
-                        }
-                      }}
-                  />
-              }
-            </div>
+            }
           </div>
         </div>
       </div>
-    </div>
-  </div>);
+      // <div className="Summary page-bg">
+      //   <Navbar/>
+      //   <div className="hero fullscreen">
+      //     <div className="hero-body">
+      //       <div className="content mt-4">
+      //         <div className="flex justify-between px-4">
+      //           <h5 className="">History</h5>
+      //           <Link to="/">
+      //             <Button className="h-12 w-32"><p>BACK</p></Button>
+      //           </Link>
+      //         </div>
+      //         <div className="row px-2">
+      //           <div className=" col-7">
+      //             <div className=" ">
+      //               {positionSet && <SummaryMaps positionSet={positionSet}/>}
+      //             </div>
+      //           </div>
+      //           <div className="col-5">
+      //             <div className="flex justify-end mb-2">
+      //               <Select
+      //                   className="mr-1"
+      //                   style={{width: 200}}
+      //                   defaultValue='January'
+      //                   bordered
+      //                   options={MONTH}
+      //                   onChange={handleMonthOnChange}
+      //               />
+      //               <Select
+      //                   className="ml-1"
+      //                   style={{width: 200}}
+      //                   defaultValue="2023"
+      //                   bordered
+      //                   options={YEAR}
+      //                   onChange={handleYearOnChange}
+      //               />
+      //             </div>
+      //             {dataset &&
+      //                 <Table
+      //                     className="justify-end"
+      //                     columns={SUM_COL}
+      //                     dataSource={records}
+      //                     onRow={(record, rowIndex) => {
+      //                       return {
+      //                         onClick: (event) => {
+      //                           history.push({
+      //                             pathname: '/detail', param: `${record.key}`,
+      //                           })
+      //                         },
+      //                       }
+      //                     }}
+      //                 />
+      //             }
+      //           </div>
+      //         </div>
+      //       </div>
+      //     </div>
+      //   </div>
+      // </div>
+  );
 }
 
 export default History;

@@ -130,61 +130,55 @@ const Camera = () => {
     setNewCam(false)
   }
 
-  return (<div className="Summary page-bg">
-    <Navbar/>
-    <div className="hero fullscreen">
-      <div className="hero-body">
+  return (
+      <div className="Summary page-bg h-screen">
+        <Navbar name={'CAMERA'}/>
         {newCam ? (
-            <div className='card mx-8 my-8 px-4 py-4'>
-              <div className='card-body'>
-                <div className='row'>
-                  <h6>Add Camera</h6>
-                </div>
-                <div className="flex justify-between w-full">
-                  <div className='mr-1 col-4 w-full'>
-                    <p>Latitude</p>
-                    <Input onChange={handleLatChange} value={lat} type="Text" className="input--sm "
-                           placeholder="Please input latitude data"/>
+            <div className=' row mt-8'>
+              <div className='card col-12 mx-8 mt-12 px-4 py-12 pt-4'>
+                <div className='card-body'>
+                  <div className='row'>
+                    <h6>Add Camera</h6>
                   </div>
-                  <div className='ml-1 mr-1 col-4 w-full'>
-                    <p>Longitude</p>
-                    <Input onChange={handleLonChange} value={lon} type="Text" className="input--sm "
-                           placeholder="Please input longitude data"/>
+                  <div className="flex justify-between w-full">
+                    <div className='mr-1 col-4 w-full'>
+                      <p>Latitude</p>
+                      <Input onChange={handleLatChange} value={lat} type="Text" className="input--sm "
+                             placeholder="Please input latitude data"/>
+                    </div>
+                    <div className='ml-1 mr-1 col-4 w-full'>
+                      <p>Longitude</p>
+                      <Input onChange={handleLonChange} value={lon} type="Text" className="input--sm "
+                             placeholder="Please input longitude data"/>
+                    </div>
+                    <div className='ml-1 col-4 w-full'>
+                      <p>Camera Id</p>
+                      <Input onChange={handleCamIdChange} value={camId} type="Text" className="input--sm "
+                             placeholder="Please input camera ID"/>
+                    </div>
                   </div>
-                  <div className='ml-1 col-4 w-full'>
-                    <p>Camera Id</p>
-                    <Input onChange={handleCamIdChange} value={camId} type="Text" className="input--sm "
-                           placeholder="Please input camera ID"/>
-                  </div>
-                </div>
-                <div className='mt-4 mx-auto flex row justify-center'>
-                  <div className=''>
-                    <Button className="ml-auto mr-4 w-60 h-12 text-white bg-blue-500" type="primary"
-                            onClick={haandleSubmit}>Submit</Button>
-                  </div>
-                  <div className=''>
-                    <Button className="ml-2 w-60 h-12 text-white bg-red-500" type="danger"
-                            onClick={() => setNewCam(false)}>Cancel</Button>
+                  <div className='mt-4 mx-auto flex row justify-center'>
+                    <div className=''>
+                      <Button className="ml-auto mr-4 w-60 h-12 text-white bg-blue-500" type="primary"
+                              onClick={haandleSubmit}>Submit</Button>
+                    </div>
+                    <div className=''>
+                      <Button className="ml-2 w-60 h-12 text-white bg-red-500" type="danger"
+                              onClick={() => setNewCam(false)}>Cancel</Button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-
         ) : (
-            <div className="content mt-4">
-              <div className="flex justify-between px-4">
-                <h5 className="">Camera Information</h5>
-                <div className='flex'>
-                  <div onClick={() => setNewCam(true)}>
-                    <Button className="h-12 w-40"><p className='font-semibold'>New Camera</p></Button>
-                  </div>
-                  <div className='ml-1'>
-                    <Link to="/">
-                      <Button className="h-12 w-32"><p>BACK</p></Button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
+            <div className=" pt-10">
+              {/*<div className="flex justify-end px-4">*/}
+              {/*  <div className='flex'>*/}
+              {/*    <div className="mt-4 justify-end" onClick={() => setNewCam(true)}>*/}
+              {/*      <Button className="h-12 w-40"><p className='font-semibold'>New Camera</p></Button>*/}
+              {/*    </div>*/}
+              {/*  </div>*/}
+              {/*</div>*/}
               <div className="row px-2">
                 <div className=" col-7">
                   <div className=" ">
@@ -192,6 +186,11 @@ const Camera = () => {
                   </div>
                 </div>
                 <div className="col-5">
+                  <div className='justify-end'>
+                    <div className="mt-4 justify-end" onClick={() => setNewCam(true)}>
+                      <Button className="h-12 w-40"><p className='font-semibold'>New Camera</p></Button>
+                    </div>
+                  </div>
                   {dataset && <Table
                       className="justify-end"
                       columns={SUM_COL}
@@ -200,9 +199,7 @@ const Camera = () => {
                 </div>
               </div>
             </div>)}
-      </div>
-    </div>
-  </div>);
+      </div>);
 }
 
 export default Camera;

@@ -55,20 +55,14 @@ const Create = () => {
 
   return (
       <div className="page-bg h-screen w-full">
-        <Navbar/>
+        <Navbar name={'CREATE NOTIFICATION'}/>
         <div className="mt-6 flex">
-          <div className="">
-            <h5 className="px-8 pt-10"> Create New Notification</h5>
+          <div className="pt-10">
             <div className="px-8">
               <CreateMaps target={target}/>
             </div>
           </div>
           <div className="pt-16">
-            {/*<div>*/}
-            {/*  <h5 className="">Please input infprmation:</h5>*/}
-            {/*</div>*/}
-            {/*<div className="mt-4">*/}
-            {/*  <h6>Location</h6>*/}
             <div className="card col-12 px-2">
               <div className="card__header px-2 pt-4">
                 <h6>Location</h6>
@@ -109,7 +103,7 @@ const Create = () => {
             <div className=" mt-12 flex col-12 ">
               <Button type="primary" block className="mr-4 h-12 w-20 text-white bg-blue-300" onClick={handleSubmit}>
                 <p>Submit</p></Button>
-              <Button className="h-12 w-44" onClick={() => history.push('/')}><p className='font-bold'>BACK</p>
+              <Button className="h-12 w-44" onClick={() => history.goBack()}><p className='font-bold'>BACK</p>
               </Button>
             </div>
           </div>

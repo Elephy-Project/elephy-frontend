@@ -6,6 +6,7 @@ import createPage from "./pages/createPage";
 import detailPage from "./pages/detailPage";
 import cameraPage from "./pages/cameraPage";
 import loginPage from "./pages/loginPage";
+import landingPage from "./pages/landingPage";
 
 class App extends Component {
 
@@ -16,7 +17,8 @@ class App extends Component {
     return (
         <div>
           <Switch>
-            <Route exact path='/' component={dashboardPage}/>
+            <Route exact path='/' component={landingPage}/>
+            <Route exact path='/dashboard' component={dashboardPage}/>
             <Route exact path='/create' component={createPage}/>
             <Route exact path='/camera' component={cameraPage}/>
             <Route exact path='/detail' component={detailPage}/>

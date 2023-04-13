@@ -24,11 +24,11 @@ const Login = () => {
   const handleSubmission = (e) => {
     console.log('top', password, username)
     console.log(DEFAULT_USERNAME, DEFAULT_PASSWORD)
-    history.push('/')
-    // if (username === DEFAULT_USERNAME && password === DEFAULT_PASSWORD){
-    //   console.log(password, username)
-    //   history.push('/')
-    // }
+    if (username === DEFAULT_USERNAME && password === DEFAULT_PASSWORD){
+      console.log(password, username)
+      // setUSER(true)
+      history.push('/')
+    }
   }
   return (
       <div className="bg-slate-500 h-screen text-center justify-center items-center">
