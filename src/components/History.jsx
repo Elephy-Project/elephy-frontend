@@ -39,20 +39,7 @@ const History = () => {
   const [year, setYear] = useState(2023);
   const history = useHistory();
   const [records, setRecords] = useState([]);
-
-
-  // useEffect(() => {
-  //   declairPosition().then(r => '');
-  // }, [dataset])
-
-  useEffect(() => {
-    fetchData().then(r => '');
-  }, [])
-
-  useEffect(() => {
-    filterRecords().then(r => '')
-  }, [dataset, month, year])
-
+  const [cameraInfo, setCameraInfo] = useState([])
   const filterRecords = async () => {
     // && record.dateTime.getFullYear() === year
     const tempRecords = dataset.filter((record) => record.dateTime.getMonth() === month && record.dateTime.getFullYear() === year)
@@ -83,12 +70,14 @@ const History = () => {
           minute: '2-digit',
           timeZone: 'Asia/Bangkok'
         };
+
+        const defineLocation = record.informant.includes('camera') ? defindInfo(record.informant): null
         const formattedDate = date.toLocaleString('en-GB', options);
         tempRecords.push({
           key: record.id,
           id: id,
           informant: record.informant,
-          location: `${record.location_lat} / ${record.location_long}`,
+          location: defineLocation !== null ? defineLocation : `${record.location_lat} / ${record.location_long}`,
           dateTimeLabel: `${formattedDate}`,
           dateTime: date,
           point: {lat: record.location_lat, lng: record.location_long}
@@ -98,7 +87,22 @@ const History = () => {
     } catch (e) {
       console.log(e)
     }
-    // setLoading(false)
+  }
+
+  const defindInfo = (camName) => {
+    const camera = cameraInfo.filter((cam) => cam.camera_id === camName)
+    return `${camera[0].location_lat}/${camera[0].location_long}`
+  }
+
+  const fetchCamera = async () => {
+    try {
+      const camInfo = await axios.get(`${process.env.REACT_APP_BASE_PATH}/info-camera`).then(response => {
+        return response.data
+      })
+      setCameraInfo(camInfo)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const handleMonthOnChange = (value, label) => {
@@ -109,6 +113,18 @@ const History = () => {
   const handleYearOnChange = (value, label) => {
     setYear(value)
   }
+
+  useEffect(() => {
+    fetchCamera().then(r => '');
+  }, [])
+
+  useEffect(() => {
+    fetchData().then(r => '');
+  }, [cameraInfo])
+
+  useEffect(() => {
+    filterRecords().then(r => '')
+  }, [dataset, month, year])
 
   return (
       <div className="page-bg h-hull w-full">

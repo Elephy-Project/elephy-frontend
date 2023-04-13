@@ -11,14 +11,21 @@ import axios from "axios";
 const Detail = () => {
   const location = useLocation();
   const [notification, setNotification] = useState([]);
-  const [selectedkey, setSelectedKey] = useState([]);
-  const [position, setPosition] = useState([]);
-  const [isLoading, setIsLoading] = useState(false)
-  const [records, setRecords] = useState([])
+  const [cameraInfo, setCameraInfo] = useState([])
   const history = useHistory();
 
+  const fetchCamera = async () => {
+    try {
+      const camInfo = await axios.get(`${process.env.REACT_APP_BASE_PATH}/info-camera`).then(response => {
+        return response.data
+      })
+      setCameraInfo(camInfo)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const fetchRecords = async () => {
-    setIsLoading(true)
     try {
       const data = await axios.get(`${process.env.REACT_APP_BASE_PATH}/elephant-records`).then(response => {
         return response.data
@@ -31,11 +38,12 @@ const Detail = () => {
         day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Bangkok'
       };
       const formattedDate = date.toLocaleString('en-GB', options);
+      const defineLocation = temp.informant.includes('camera') ? defindInfo(temp.informant): null
 
       const tempRecord = [{
         key: temp.id,
         informant: temp.informant,
-        location: `${temp.location_lat} / ${temp.location_long}`,
+        location: defineLocation !== null ? defineLocation : `${temp.location_lat} / ${temp.location_long}`,
         dateTime: `${formattedDate}`,
         point: {lat: temp.location_lat, lng: temp.location_long},
         imgLink: temp.img_link ? temp.img_link : null
@@ -44,13 +52,21 @@ const Detail = () => {
     } catch (e) {
       console.log(e)
     }
-    setIsLoading(false)
+  }
+
+  const defindInfo = (camName) => {
+    const camera = cameraInfo.filter((cam) => cam.camera_id === camName)
+    return `${camera[0].location_lat}/${camera[0].location_long}`
   }
 
   useEffect(() => {
-    fetchRecords().then(r => '')
+    fetchCamera().then(r => null)
   }, [location.param])
-  // <img src={notification.imgLink}/>
+
+  useEffect(() => {
+    fetchRecords().then(r => '')
+  }, [cameraInfo])
+
   return (<div className="page-bg h-full w-full">
         <Navbar name={'DETAIL'}/>
         <div className="row px-2 pt-12">
