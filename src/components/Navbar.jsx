@@ -5,12 +5,11 @@ import {Link, useHistory} from "react-router-dom";
 import {PauseOutlined} from "@ant-design/icons";
 
 const Navbar = (props) => {
-  const [openMenu, setOpenMenu] = useState(false)
   const pageName = props.name
   const history = useHistory();
 
   const logoutHandle = () => {
-    sessionStorage.setItem('login', 'false')
+    sessionStorage.setItem('access_token', '')
     history.push('/')
   }
   return (
@@ -34,11 +33,6 @@ const Navbar = (props) => {
             {/*<PauseOutlined onClick={() => setOpenMenu(!openMenu)}/>*/}
           </div>
         </div>
-        {/*{openMenu &&*/}
-        {/*    <div className="absolute top-20 right-4 bg-gray-200 rounded-md">*/}
-        {/*      <p>menu</p>*/}
-        {/*    </div>*/}
-        {/*}*/}
 
       </div>
   );

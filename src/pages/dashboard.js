@@ -5,9 +5,11 @@ import {useHistory} from "react-router-dom";
 
 const dashboardPage = () => {
   const history = useHistory()
-  if (sessionStorage.getItem('access_token') === null) {
+
+  if (sessionStorage.getItem('access_token') === '') {
     history.push('/login')
   }
+
   return(
       <Dashboard/>
 

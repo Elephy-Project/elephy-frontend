@@ -5,7 +5,8 @@ import {useHistory} from "react-router-dom";
 
 const createPage = () => {
   const history = useHistory()
-  if (sessionStorage.getItem('access_token') === null) {
+
+  if (sessionStorage.getItem('access_token') === '') {
     history.push('/login')
   }
 

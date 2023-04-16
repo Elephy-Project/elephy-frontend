@@ -60,6 +60,7 @@ const Login = () => {
       }
     } catch (error) {
       console.log(error)
+      setLoginWrong(true)
     }
   }
 
