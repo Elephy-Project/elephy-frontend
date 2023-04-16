@@ -13,10 +13,11 @@ const Detail = () => {
   const [notification, setNotification] = useState([]);
   const [cameraInfo, setCameraInfo] = useState([])
   const history = useHistory();
+  const TOKEN = sessionStorage.getItem('access_token')
 
   const fetchCamera = async () => {
     try {
-      const camInfo = await axios.get(`${process.env.REACT_APP_BASE_PATH}/info-camera`).then(response => {
+      const camInfo = await axios.get(`${process.env.REACT_APP_BASE_PATH}/info-camera`, { headers: { Authorization: `Bearer ${TOKEN}` } }).then(response => {
         return response.data
       })
       setCameraInfo(camInfo)
@@ -27,7 +28,7 @@ const Detail = () => {
 
   const fetchRecords = async () => {
     try {
-      const data = await axios.get(`${process.env.REACT_APP_BASE_PATH}/elephant-records`).then(response => {
+      const data = await axios.get(`${process.env.REACT_APP_BASE_PATH}/elephant-records`, { headers: { Authorization: `Bearer ${TOKEN}` } }).then(response => {
         return response.data
       })
 

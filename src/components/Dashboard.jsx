@@ -11,6 +11,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true)
   const [records, setRecords] = useState([])
   const [cameraInfo, setCameraInfo] = useState([])
+  const TOKEN = sessionStorage.getItem('access_token')
   const INBOX_COL = [{
     title: 'วันเวลา', dataIndex: 'dateTime', key: 'dateTime',
   },
@@ -22,7 +23,7 @@ const Dashboard = () => {
 
   const fetchCamera = async () => {
     try {
-      const camInfo = await axios.get(`${process.env.REACT_APP_BASE_PATH}/info-camera`).then(response => {
+      const camInfo = await axios.get(`${process.env.REACT_APP_BASE_PATH}/info-camera`, { headers: { Authorization: `Bearer ${TOKEN}` } }).then(response => {
         return response.data
       })
       setCameraInfo(camInfo)
@@ -32,7 +33,7 @@ const Dashboard = () => {
   }
   const fetchData = async () => {
     try {
-      const data = await axios.get(`${process.env.REACT_APP_BASE_PATH}/elephant-records`).then(response => {
+      const data = await axios.get(`${process.env.REACT_APP_BASE_PATH}/elephant-records`, { headers: { Authorization: `Bearer ${TOKEN}` } }).then(response => {
         return response.data
       })
       let id = 0
@@ -56,13 +57,12 @@ const Dashboard = () => {
           id: id,
           informant: record.informant,
           location: defineLocation !== null ? defineLocation : `${record.location_lat} / ${record.location_long}`,
-          dateTime: `${formattedDate}`,
-          // imgLink: record.img_link ? record.img_link:null
+          dateTime: `${formattedDate}`
         })
       })
       setRecords(tempRecords)
-    } catch (e) {
-      console.log(e)
+    } catch (error) {
+      console.log(error)
     }
     setLoading(false)
   }
@@ -81,7 +81,7 @@ const Dashboard = () => {
   }, [cameraInfo])
 
   return (// <h1> hello world</h1>
-      (records.length > 0) ? (
+      (records.length > 0 && !loading) ? (
           <div className="page-bg h-full ">
             <Navbar name={'INBOX'}/>
             <div className="row ">

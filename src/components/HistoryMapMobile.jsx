@@ -13,7 +13,7 @@ import {useEffect, useRef, useState} from 'react'
 
 const center = {lat: 13.736717, lng: 100.523186}
 
-const SummaryMap = (props) => {
+const HistoryMobileMap = (props) => {
   const positionSet = props.positionSet
   const [sumPosition, setSumPosition] = useState([]);
   const { isLoaded } = useJsApiLoader({
@@ -42,8 +42,8 @@ const SummaryMap = (props) => {
             position='relative'
             flexDirection='column'
             alignItems='right'
-            h='85vh'
-            w='52vw'
+            h='60vh'
+            w='90vw'
         >
           <Box position='absolute' left={0} top={0} h='100%' w='100%'>
             {/* Google Map Box */}
@@ -69,4 +69,4 @@ const SummaryMap = (props) => {
   )
 }
 
-export default SummaryMap
+export default HistoryMobileMap

@@ -39,10 +39,11 @@ const Camera = () => {
   const [lat, setLat] = useState('')
   const [lon, setLon] = useState('')
   const [camId, setCamId] = useState('')
+  const TOKEN = sessionStorage.getItem('access_token')
 
   useEffect(() => {
     fetchData().then(r => '');
-  }, [])
+  }, [newCam])
 
   useEffect(() => {
     filterRecords().then(r => '')
@@ -59,7 +60,7 @@ const Camera = () => {
   }
   const fetchData = async () => {
     try {
-      const data = await axios.get(`${process.env.REACT_APP_BASE_PATH}/info-camera`).then(response => {
+      const data = await axios.get(`${process.env.REACT_APP_BASE_PATH}/info-camera`, { headers: { Authorization: `Bearer ${TOKEN}` } }).then(response => {
         return response.data
       })
       let id = 0
@@ -110,24 +111,24 @@ const Camera = () => {
     setCamId(e.target.value)
   }
 
-  const haandleSubmit = async () => {
+  const handleSubmit = async () => {
     try {
       const res = await axios.post(`${process.env.REACT_APP_BASE_PATH}/info-camera`, {
         camera_id: camId,
         location_lat: Number(lat),
         location_long: Number(lon),
-      }).then(response => {
+      }, { headers: { Authorization: `Bearer ${TOKEN}` } }).then(response => {
         return response.status
       })
       if (res === 200) {
         setLat('')
         setLon('')
         setCamId('')
+        setNewCam(false)
       }
     } catch (error) {
       console.log(error)
     }
-    setNewCam(false)
   }
 
   return (
@@ -160,7 +161,7 @@ const Camera = () => {
                   <div className='mt-4 mx-auto flex row justify-center'>
                     <div className=''>
                       <Button className="ml-auto mr-4 w-60 h-12 text-white bg-blue-500" type="primary"
-                              onClick={haandleSubmit}>Submit</Button>
+                              onClick={handleSubmit}>Submit</Button>
                     </div>
                     <div className=''>
                       <Button className="ml-2 w-60 h-12 text-white bg-red-500" type="danger"

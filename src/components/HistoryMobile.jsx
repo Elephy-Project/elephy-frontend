@@ -3,8 +3,8 @@ import React, {useEffect, useState} from "react";
 import Navbar from "./Navbar";
 import {Button, Select, Table} from "antd";
 import {Link, useHistory} from "react-router-dom";
-import SummaryMaps from "./HistoryMaps";
 import axios from "axios";
+import HistoryMobileMap from "./HistoryMapMobile";
 
 const MONTH = [
   {value: 0, label: "January"},
@@ -24,15 +24,10 @@ const YEAR = [{value: 2022, label: "2022"}, {value: 2023, label: "2023"},]
 
 const SUM_COL = [
   {
-    title: 'ผู้แจ้งเตือน', dataIndex: 'informant', key: 'informant',
-  },
-  {
-    title: 'Location', dataIndex: 'location', key: 'location'
-  }, {
     title: 'วันเวลา', dataIndex: 'dateTimeLabel', key: 'dateTime',
   },]
 
-const History = () => {
+const HistoryMobile = () => {
   const [dataset, setDataSet] = useState([]); // change to record
   const [positionSet, setPositionSet] = useState([]);
   const [month, setMonth] = useState(0);
@@ -40,7 +35,26 @@ const History = () => {
   const history = useHistory();
   const [records, setRecords] = useState([]);
   const [cameraInfo, setCameraInfo] = useState([])
-  const TOKEN = sessionStorage.getItem('access_token')
+  const [status, setStatus] = useState(0)
+  const [token, setToken] = useState('')
+
+  const login = async ( )=> {
+    const request = new FormData()
+
+    request.append('username', process.env.REACT_APP_USERNAME )
+    request.append('password', process.env.REACT_APP_PASSWORD )
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_BASE_PATH}/token`, request).then(response => {
+        return response
+      })
+
+      if (response.status === 200) {
+        setToken(response.data.access_token)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const filterRecords = async () => {
     // && record.dateTime.getFullYear() === year
     const tempRecords = dataset.filter((record) => record.dateTime.getMonth() === month && record.dateTime.getFullYear() === year)
@@ -54,7 +68,7 @@ const History = () => {
   }
   const fetchData = async () => {
     try {
-      const data = await axios.get(`${process.env.REACT_APP_BASE_PATH}/elephant-records`, { headers: { Authorization: `Bearer ${TOKEN}` } }).then(response => {
+      const data = await axios.get(`${process.env.REACT_APP_BASE_PATH}/elephant-records`, { headers: { Authorization: `Bearer ${token}` } }).then(response => {
         return response.data
       })
       let id = 0
@@ -97,7 +111,7 @@ const History = () => {
 
   const fetchCamera = async () => {
     try {
-      const camInfo = await axios.get(`${process.env.REACT_APP_BASE_PATH}/info-camera`, { headers: { Authorization: `Bearer ${TOKEN}` } }).then(response => {
+      const camInfo = await axios.get(`${process.env.REACT_APP_BASE_PATH}/info-camera`, { headers: { Authorization: `Bearer ${token}` } }).then(response => {
         return response.data
       })
       setCameraInfo(camInfo)
@@ -107,7 +121,6 @@ const History = () => {
   }
 
   const handleMonthOnChange = (value, label) => {
-    console.log(value)
     setMonth(value)
   }
 
@@ -116,8 +129,11 @@ const History = () => {
   }
 
   useEffect(() => {
-    fetchCamera().then(r => '');
+    login().then(r => '')
   }, [])
+  useEffect(() => {
+    fetchCamera().then(r => '');
+  }, [token])
 
   useEffect(() => {
     fetchData().then(r => '');
@@ -128,47 +144,51 @@ const History = () => {
   }, [dataset, month, year])
 
   return (
-      <div className="page-bg h-hull w-full">
-        <Navbar name={'HISTORY'}/>
-        <div className="row px-4 pt-12">
-          <div className=" col-7">
-            <div className="ml-1">
-              {positionSet && <SummaryMaps positionSet={positionSet}/>}
+      <div className="sm page-bg h-full">
+        <div className="h-14 py-2 nav-bg">
+          <h4 className="text-white text-center">History</h4>
+        </div>
+        <div className="row col-12 pt-4 justify-center">
+          <div className="flex  mb-2 mx-2">
+            <Select
+                className="mr-1"
+                style={{width: 150}}
+                defaultValue='January'
+                bordered
+                options={MONTH}
+                onChange={handleMonthOnChange}
+            />
+            <Select
+                className="ml-1"
+                style={{width: 150}}
+                defaultValue="2023"
+                bordered
+                options={YEAR}
+                onChange={handleYearOnChange}
+            />
+          </div>
+        <div className="row px-2">
+          <div className=" col-12">
+            <div className="">
+              {positionSet && <HistoryMobileMap positionSet={positionSet}/>}
             </div>
           </div>
-          <div className="col-5 ">
-            <div className="flex justify-end mb-2">
-              <Select
-                  className="mr-1"
-                  style={{width: 200}}
-                  defaultValue='January'
-                  bordered
-                  options={MONTH}
-                  onChange={handleMonthOnChange}
-              />
-              <Select
-                  className="ml-1"
-                  style={{width: 200}}
-                  defaultValue="2023"
-                  bordered
-                  options={YEAR}
-                  onChange={handleYearOnChange}
-              />
-            </div>
+        </div>
+        <div className="row px-2 pt-4">
             {dataset &&
                 <Table
-                    className="justify-end"
+                    className="w-full"
                     columns={SUM_COL}
                     dataSource={records}
-                    onRow={(record, rowIndex) => {
-                      return {
-                        onClick: (event) => {
-                          history.push({
-                            pathname: '/detail', param: `${record.key}`,
-                          })
-                        },
-                      }
-                    }}
+                    // onRow={(record, rowIndex) => {
+                    //   return {
+                    //     onClick: (event) => {
+                    //       history.push({
+                    //         pathname: '/detail', param: `${record.key}`,
+                    //       })
+                    //     },
+                    //   }
+                    // }}
                 />
             }
           </div>
@@ -177,4 +197,4 @@ const History = () => {
   );
 }
 
-export default History;
+export default HistoryMobile;
