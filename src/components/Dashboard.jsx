@@ -82,11 +82,11 @@ const Dashboard = () => {
 
   return (// <h1> hello world</h1>
       (records.length > 0 && !loading) ? (
-          <div className="page-bg h-full h-screen">
+          <div className="page-bg h-full">
             <Navbar name={'INBOX'}/>
             <div className="row ">
               <Table
-                  className="mx-4 mt-12 w-full"
+                  className="mx-4 mt-12 w-full h-screen"
                   columns={INBOX_COL}
                   dataSource={records}
                   onRow={(record, rowIndex) => {

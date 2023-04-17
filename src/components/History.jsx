@@ -128,7 +128,7 @@ const History = () => {
   }, [dataset, month, year])
 
   return (
-      <div className="page-bg h-hull w-full">
+      <div className="page-bg w-full">
         <Navbar name={'HISTORY'}/>
         <div className="row px-4 pt-12">
           <div className=" col-7">
@@ -157,7 +157,7 @@ const History = () => {
             </div>
             {dataset &&
                 <Table
-                    className="justify-end"
+                    className="justify-end h-screen"
                     columns={SUM_COL}
                     dataSource={records}
                     onRow={(record, rowIndex) => {
