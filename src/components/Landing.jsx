@@ -41,7 +41,7 @@ const Landing = () => {
           </div>
         </div>
         <div className=" px-40 py-48 item-center justify-center">
-          <p className="text-white text-xl"> Jion Us </p>
+          <p className="text-white text-xl"> Join Us </p>
           <div className="mx-auto my-auto">
             <img src={line_qr} style={{display: 'block', marginLeft: 'auto', marginRight: 'auto'}}/>
           </div>

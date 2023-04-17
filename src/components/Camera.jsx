@@ -132,7 +132,7 @@ const Camera = () => {
   }
 
   return (
-      <div className="Summary page-bg h-screen">
+      <div className="Summary page-bg h-screen h-full">
         <Navbar name={'CAMERA'}/>
         {newCam ? (
             <div className=' row mt-8'>

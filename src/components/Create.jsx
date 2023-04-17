@@ -6,12 +6,30 @@ import {Button, Input} from "antd";
 import CreateMaps from "./CreateMap";
 import {Link, useHistory} from "react-router-dom";
 import axios from "axios";
+import {WarningFilled} from "@ant-design/icons";
+
+const CreateModal = ({setCreateSuccess}) => {
+  const handleSubmission = () => {
+    setCreateSuccess(false)
+  }
+  return (
+      <>
+        <div className="bg-white rounded-lg my-56 mx-96 py-6 ">
+          <WarningFilled style={{fontSize: '50px', color: '#03fc77',  margin: 'auto'}}/>
+          <p className="pt-2 text-center mx-16">Notification create success</p>
+          <Button type="primary" danger className='w-48 justify-center text-white font-bold h-10'
+                  onClick={() => handleSubmission()}>OK</Button>
+        </div>
+      </>
+  )
+}
 
 const Create = () => {
   const [lat, setLat] = useState('')
   const [lon, setLon] = useState('')
   const [target, setTarget] = useState([])
   const [informant, setInformant] = useState('')
+  const [createSuccess, setCreateSuccess] = useState(false)
   const history = useHistory()
   const TOKEN = sessionStorage.getItem('access_token')
 
@@ -37,13 +55,14 @@ const Create = () => {
         informant: informant,
         location_lat: Number(lat),
         location_long: Number(lon),
-      }, { headers: { Authorization: `Bearer ${TOKEN}` } }).then(response => {
+      }, {headers: {Authorization: `Bearer ${TOKEN}`}}).then(response => {
         return response.status
       })
       if (res === 200) {
         setLat('')
         setLon('')
         setInformant('')
+        setCreateSuccess(true)
       }
     } catch (error) {
       console.log(error)
@@ -55,7 +74,7 @@ const Create = () => {
   }
 
   return (
-      <div className="page-bg h-screen">
+      <div className="page-bg h-screen justify-center text-center items-center">
         <Navbar name={'CREATE NOTIFICATION'}/>
         <div className="mt-6 flex">
           <div className="pt-10">
@@ -96,9 +115,13 @@ const Create = () => {
             </div>
           </div>
         </div>
+        {createSuccess ?
+            <div className='overflow-y-auto fixed top-0 right-0 left-0 z-50 w-full h-full justify-center'
+                 style={{background: 'rgba(0, 0, 0, 0.4)'}}>
+              <CreateModal setCreateSuccess={setCreateSuccess}/>
+            </div> : null}
       </div>
-  )
-      ;
+  );
 }
 
 export default Create;
