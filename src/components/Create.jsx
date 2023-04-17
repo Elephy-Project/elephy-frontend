@@ -55,15 +55,15 @@ const Create = () => {
   }
 
   return (
-      <div className="page-bg h-screen w-full">
+      <div className="page-bg h-screen">
         <Navbar name={'CREATE NOTIFICATION'}/>
         <div className="mt-6 flex">
           <div className="pt-10">
-            <div className="px-8">
+            <div className="pl-8 pr-4">
               <CreateMaps target={target}/>
             </div>
           </div>
-          <div className="pt-16">
+          <div className="pt-16 pr-8">
             <div className="card col-12 px-2">
               <div className="card__header px-2 pt-4">
                 <h6>Location</h6>

@@ -1,14 +1,8 @@
-// import 'cirrus-ui';
 import React, {useContext, useState} from "react";
 import {Button, Input} from "antd";
 import {Link, useHistory} from "react-router-dom";
 import {WarningFilled} from "@ant-design/icons";
 import axios from "axios";
-// import {AuthContext} from "./AuthProvider";
-// import {default} from "@chakra-ui/react";
-
-const DEFAULT_USERNAME = process.env.REACT_APP_USERNAME
-const DEFAULT_PASSWORD = process.env.REACT_APP_PASSWORD
 
 const LoginModal = ({setLoginWrong}) => {
   const handleOK = () => {

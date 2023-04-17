@@ -173,14 +173,7 @@ const Camera = () => {
             </div>
         ) : (
             <div className=" pt-10">
-              {/*<div className="flex justify-end px-4">*/}
-              {/*  <div className='flex'>*/}
-              {/*    <div className="mt-4 justify-end" onClick={() => setNewCam(true)}>*/}
-              {/*      <Button className="h-12 w-40"><p className='font-semibold'>New Camera</p></Button>*/}
-              {/*    </div>*/}
-              {/*  </div>*/}
-              {/*</div>*/}
-              <div className="row px-2">
+              <div className="row px-4">
                 <div className=" col-7">
                   <div className=" ">
                     {positionSet && <SummaryMaps positionSet={positionSet}/>}

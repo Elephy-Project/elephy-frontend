@@ -33,7 +33,6 @@ const Navbar = (props) => {
             {/*<PauseOutlined onClick={() => setOpenMenu(!openMenu)}/>*/}
           </div>
         </div>
-
       </div>
   );
 };

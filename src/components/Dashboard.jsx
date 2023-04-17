@@ -82,7 +82,7 @@ const Dashboard = () => {
 
   return (// <h1> hello world</h1>
       (records.length > 0 && !loading) ? (
-          <div className="page-bg h-full ">
+          <div className="page-bg h-full h-screen">
             <Navbar name={'INBOX'}/>
             <div className="row ">
               <Table
