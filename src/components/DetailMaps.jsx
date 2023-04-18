@@ -27,6 +27,8 @@ const DetailMaps = (props) => {
     libraries: ['places'],
   })
 
+  console.log(position)
+
   useEffect(() => {
     setNotiPosition(position)
   },[position])

@@ -12,6 +12,8 @@ const Detail = () => {
   const location = useLocation();
   const [notification, setNotification] = useState([]);
   const [cameraInfo, setCameraInfo] = useState([])
+  const [lat, setLat] = useState(0)
+  const [lng, setLng] = useState(0)
   const history = useHistory();
   const TOKEN = sessionStorage.getItem('access_token')
 
@@ -41,12 +43,13 @@ const Detail = () => {
       const formattedDate = date.toLocaleString('en-GB', options);
       const defineLocation = temp.informant.includes('camera') ? defindInfo(temp.informant): null
 
+      console.log(defineLocation)
       const tempRecord = [{
         key: temp.id,
         informant: temp.informant,
-        location: defineLocation !== null ? defineLocation : `${temp.location_lat} / ${temp.location_long}`,
+        location: defineLocation !== null ? defineLocation.location : `${temp.location_lat} / ${temp.location_long}`,
         dateTime: `${formattedDate}`,
-        point: {lat: temp.location_lat, lng: temp.location_long},
+        point: defineLocation !== null ? {lat: defineLocation.lat, lng: defineLocation.lng} : {lat: temp.location_lat, lng: temp.location_long},
         imgLink: temp.img_link ? temp.img_link : null
       }]
       setNotification(tempRecord[0])
@@ -57,7 +60,10 @@ const Detail = () => {
 
   const defindInfo = (camName) => {
     const camera = cameraInfo.filter((cam) => cam.camera_id === camName)
-    return `${camera[0].location_lat}/${camera[0].location_long}`
+    setLat(Number(camera[0].location_lat))
+    setLng(Number(camera[0].location_long))
+    return {location: `${camera[0].location_lat}/${camera[0].location_long}`, lat: Number(camera[0].location_lat),lng: Number(camera[0].location_long)
+  }
   }
 
   useEffect(() => {
