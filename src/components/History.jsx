@@ -128,7 +128,7 @@ const History = () => {
   }, [dataset, month, year])
 
   return (
-      <div className="page-bg w-full">
+      <div className="page-bg w-full h-full">
         <Navbar name={'HISTORY'}/>
         <div className="row px-4 pt-12">
           <div className=" col-7">
