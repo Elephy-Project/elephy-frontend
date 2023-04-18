@@ -132,7 +132,7 @@ const Camera = () => {
   }
 
   return (
-      <div className="Summary page-bg h-screen h-full">
+      <div className="Summary page-bg h-full">
         <Navbar name={'CAMERA'}/>
         {newCam ? (
             <div className=' row mt-8'>
@@ -186,7 +186,7 @@ const Camera = () => {
                     </div>
                   </div>
                   {dataset && <Table
-                      className="justify-end"
+                      className="justify-end h-screen"
                       columns={SUM_COL}
                       dataSource={dataset}
                   />}

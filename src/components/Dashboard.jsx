@@ -81,7 +81,7 @@ const Dashboard = () => {
   }, [cameraInfo])
 
   return (// <h1> hello world</h1>
-      (records.length > 0 && !loading) ? (
+      (records.length > 0 ) ? (
           <div className="page-bg h-full">
             <Navbar name={'INBOX'}/>
             <div className="row ">
