@@ -35,7 +35,7 @@ const SUM_COL = [
 const History = () => {
   const [dataset, setDataSet] = useState([]); // change to record
   const [positionSet, setPositionSet] = useState([]);
-  const [month, setMonth] = useState(4);
+  const [month, setMonth] = useState(3);
   const [year, setYear] = useState(2023);
   const history = useHistory();
   const [records, setRecords] = useState([]);
@@ -128,7 +128,7 @@ const History = () => {
   }, [dataset, month, year])
 
   return (
-      <div className="page-bg w-full h-full">
+      <div className="page-bg h-full">
         <Navbar name={'HISTORY'}/>
         <div className="row px-4 pt-12">
           <div className=" col-7">
@@ -157,7 +157,7 @@ const History = () => {
             </div>
             {dataset &&
                 <Table
-                    className="justify-end h-screen"
+                    className="justify-end"
                     columns={SUM_COL}
                     dataSource={records}
                     onRow={(record, rowIndex) => {
