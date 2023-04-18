@@ -141,7 +141,7 @@ const History = () => {
               <Select
                   className="mr-1"
                   style={{width: 200}}
-                  defaultValue='January'
+                  defaultValue='April'
                   bordered
                   options={MONTH}
                   onChange={handleMonthOnChange}
