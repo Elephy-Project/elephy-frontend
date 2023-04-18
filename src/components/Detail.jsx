@@ -90,27 +90,27 @@ const Detail = () => {
               </div>
               <div className="row flex justify-between">
                 <div className="card col-3">
-                  <div className="card__header my-2 px-2">
+                  <div className="card__header mt-2 px-1">
                     <h6>Informants</h6>
                   </div>
-                  <div className="card__body my-2 px-1">
+                  <div className="card__body my-1 px-1">
                   <span>{notification.informant}
                   </span>
                   </div>
                 </div>
-                <div className="card col-4 mx-1">
+                <div className="card col-5 mx-1">
                   <div className="card__header px-2 my-2">
                     <h6>Location</h6>
                   </div>
-                  <div className="card__body my-2 px-1">
+                  <div className="card__body my-1 px-1">
                     <span>{notification.location}</span>
                   </div>
                 </div>
-                <div className="card col-4">
+                <div className="card col-3">
                   <div className="card__header my-2 px-2">
                     <h6>Date Time</h6>
                   </div>
-                  <div className="card__body my-2 px-2">
+                  <div className="card__body my-1 px-2">
                     <span>{notification.dateTime}</span>
                   </div>
                 </div>
