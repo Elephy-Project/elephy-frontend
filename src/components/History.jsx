@@ -35,7 +35,7 @@ const SUM_COL = [
 const History = () => {
   const [dataset, setDataSet] = useState([]); // change to record
   const [positionSet, setPositionSet] = useState([]);
-  const [month, setMonth] = useState(0);
+  const [month, setMonth] = useState(4);
   const [year, setYear] = useState(2023);
   const history = useHistory();
   const [records, setRecords] = useState([]);
