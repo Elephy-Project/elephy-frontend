@@ -89,7 +89,7 @@ const Detail = () => {
                 </div>
               </div>
               <div className="row flex justify-between">
-                <div className="card col-4">
+                <div className="card col-3">
                   <div className="card__header my-2 px-2">
                     <h6>Informants</h6>
                   </div>
@@ -98,7 +98,7 @@ const Detail = () => {
                   </span>
                   </div>
                 </div>
-                <div className="card col-3 mx-1">
+                <div className="card col-4 mx-1">
                   <div className="card__header px-2 my-2">
                     <h6>Location</h6>
                   </div>
